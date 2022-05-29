@@ -4,7 +4,7 @@
     
       git clone https://github.com/mdmarufsarker/scss-template.git
   
-- Go to inside this directory
+- Go inside this directory
     
       cd scss-template
     

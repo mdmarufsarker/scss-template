@@ -1,22 +1,301 @@
-html{
-    font-size: 62.5%;
-}
-body{
-    background-color: dodgerblue;
+:root {
+	--bg-color: rgb(255, 212, 0);
+	--line-color: rgb(0, 0, 0);
+	--main-color: rgb(255, 244, 0);
+	--main-color-dark: rgb(140, 70, 20);
+	--wing-color: rgb(72, 209, 204);
+	--unit: 1vh;
 }
 
-nav{
-    ul{
-        display: flex;
-        li{
-            font-size: 2rem;
-            padding: 1rem 2rem;
-            list-style: none;
-            a{
-                text-decoration: none;
-                font-size: 1.8rem;
-                
-            }
-        }
-    }
+*:before,
+*:after {
+	content: "";
+	position: absolute;
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+	display: grid;
+	place-items: center;
+	background-color: var(--bg-color);
+	overflow: hidden;
+}
+
+.bee {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: calc(34 * var(--unit));
+	width: calc(30 * var(--unit));
+	height: calc(32 * var(--unit));
+	animation: fly 2s infinite alternate ease-in-out;
+	z-index: 5;
+	&::before,
+	&::after {
+		bottom: 0;
+		left: calc(10 * var(--unit));
+		width: calc(2.5 * var(--unit));
+		height: calc(5 * var(--unit));
+		background-color: transparent;
+		border: calc(0.5 * var(--unit)) solid var(--line-color);
+		clip-path: inset(30% 0 0 50%);
+		border-radius: 50%;
+		z-index: 15;
+		transform-origin: 100% 30%;
+		animation: swing 1s infinite alternate ease-in-out -0.25s;
+	}
+	&::after {
+		bottom: calc(1 * var(--unit));
+		left: calc(18 * var(--unit));
+		width: calc(2 * var(--unit));
+		height: calc(4 * var(--unit));
+		animation: swing 1s infinite alternate ease-in-out;
+	}
+}
+
+.booty {
+	position: absolute;
+	bottom: calc(5 * var(--unit));
+	left: 0;
+	width: calc(30 * var(--unit));
+	height: calc(20 * var(--unit));
+	background-color: var(--main-color);
+	background-image: radial-gradient(
+		circle at 75% 45%,
+		var(--main-color) 42%,
+		var(--main-color-dark) 51%,
+		var(--main-color-dark) 54%,
+		var(--main-color) 64%,
+		var(--main-color) 66%,
+		var(--main-color-dark) 74%,
+		var(--main-color-dark) 77%,
+		var(--main-color) 86%
+	);
+	border-radius: calc(12 * var(--unit)) calc(9 * var(--unit))
+		calc(9 * var(--unit)) calc(6 * var(--unit));
+	z-index: 1;
+	&::before,
+	&::after {
+		bottom: calc(-4 * var(--unit));
+		left: calc(5 * var(--unit));
+		width: calc(2 * var(--unit));
+		height: calc(4 * var(--unit));
+		background-color: transparent;
+		border: calc(0.5 * var(--unit)) solid var(--line-color);
+		clip-path: inset(30% 0 0 50%);
+		border-radius: 50%;
+		z-index: 5;
+		transform-origin: 100% 30%;
+		animation: swing 1s infinite alternate ease-in-out -0.5s;
+	}
+	&::after {
+		bottom: calc(-3.5 * var(--unit));
+		left: calc(13 * var(--unit));
+		width: calc(1.5 * var(--unit));
+		height: calc(3 * var(--unit));
+		animation: swing 1s infinite alternate ease-in-out -0.4s;
+	}
+}
+
+.wing-left,
+.wing-right {
+	position: absolute;
+	top: calc(-8 * var(--unit));
+	left: calc(9 * var(--unit));
+	width: calc(8 * var(--unit));
+	height: calc(16 * var(--unit));
+	background-color: var(--wing-color);
+	z-index: 2;
+	transform-origin: 75% 100%;
+	transform: rotate(-15deg);
+	border-radius: calc(8 * var(--unit)) calc(5 * var(--unit))
+		calc(2 * var(--unit)) calc(10 * var(--unit));
+	animation: wing 0.075s infinite alternate ease-in-out;
+}
+
+.wing-left {
+	left: calc(16 * var(--unit));
+	z-index: 0;
+	transform-origin: 25% 100%;
+	transform: rotate(15deg);
+	border-radius: calc(5 * var(--unit)) calc(8 * var(--unit))
+		calc(10 * var(--unit)) calc(2 * var(--unit));
+	animation: wing-reverse 0.075s infinite alternate ease-in-out;
+}
+
+.face {
+	position: absolute;
+	top: calc(8 * var(--unit));
+	right: 0;
+	width: calc(12 * var(--unit));
+	height: calc(12 * var(--unit));
+	z-index: 2;
+	animation: swing 6s infinite alternate ease-in-out -0.5s;
+	&::before,
+	&::after {
+		top: calc(5 * var(--unit));
+		width: calc(6 * var(--unit));
+		height: calc(6 * var(--unit));
+		background-color: rgba(255, 20, 147, 0.1);
+		background-image: radial-gradient(
+			circle,
+			rgba(255, 20, 147, 0.075) 25%,
+			rgba(255, 240, 0, 1) 75%
+		);
+		border-radius: 50%;
+	}
+	&::before {
+		left: 0;
+	}
+	&::after {
+		top: calc(5.75 * var(--unit));
+		right: calc(0.25 * var(--unit));
+		width: calc(4.5 * var(--unit));
+		height: calc(4.5 * var(--unit));
+	}
+}
+
+.eyes {
+	position: absolute;
+	top: calc(5 * var(--unit));
+	left: 0;
+	width: calc(2 * var(--unit));
+	height: calc(2 * var(--unit));
+	background-color: var(--line-color);
+	border-radius: 50%;
+	z-index: 3;
+	&::before {
+		top: 0;
+		left: calc(10 * var(--unit));
+		width: calc(2 * var(--unit));
+		height: calc(2 * var(--unit));
+		background-color: var(--line-color);
+		border-radius: 50%;
+	}
+}
+
+.mouth {
+	position: absolute;
+	top: calc(4.75 * var(--unit));
+	left: calc(5.5 * var(--unit));
+	width: calc(2 * var(--unit));
+	height: calc(2 * var(--unit));
+	background-color: transparent;
+	border: calc(0.5 * var(--unit)) solid var(--line-color);
+	clip-path: inset(60% 5% 0 5%);
+	border-radius: 50%;
+	z-index: 2;
+}
+
+.cloud1,
+.cloud2,
+.cloud3 {
+	position: absolute;
+	top: calc(16 * var(--unit));
+	right: 0;
+	width: calc(28 * var(--unit));
+	height: calc(12 * var(--unit));
+	background-color: white;
+	background-image: linear-gradient(
+		0deg,
+		rgb(228, 228, 228) 0%,
+		rgb(255, 255, 255) 40%
+	);
+	z-index: 0;
+	border-radius: calc(6 * var(--unit));
+	animation: glide 20s infinite linear -15s;
+	&::before {
+		top: calc(-6 * var(--unit));
+		left: calc(11 * var(--unit));
+		width: calc(12 * var(--unit));
+		height: calc(12 * var(--unit));
+		background-color: white;
+		border-radius: calc(10 * var(--unit));
+		clip-path: inset(0 0 40% 0);
+	}
+	&::after {
+		top: calc(-3 * var(--unit));
+		left: calc(5 * var(--unit));
+		width: calc(8 * var(--unit));
+		height: calc(8 * var(--unit));
+		background-color: white;
+		z-index: 0;
+		border-radius: calc(10 * var(--unit));
+		clip-path: inset(0 0 40% 0);
+	}
+}
+
+.cloud2 {
+	top: calc(82 * var(--unit));
+	width: calc(24 * var(--unit));
+	height: calc(10 * var(--unit));
+	animation: glide 27s infinite linear -15s;
+	&::before {
+		left: calc(8 * var(--unit));
+		top: calc(-4 * var(--unit));
+	}
+	&::after {
+		left: calc(4 * var(--unit));
+	}
+}
+
+.cloud3 {
+	top: calc(58 * var(--unit));
+	width: calc(24 * var(--unit));
+	height: calc(7 * var(--unit));
+	animation: glide 35s infinite linear -10s;
+	transform-origin: 50% 50%;
+	&::before {
+		left: calc(3 * var(--unit));
+	}
+	&::after {
+		left: calc(12 * var(--unit));
+	}
+}
+
+@keyframes fly {
+	0% {
+		transform: translateY(-5vw) rotate(-5deg);
+	}
+	100% {
+		transform: translateY(8vw) rotate(2deg);
+	}
+}
+
+@keyframes wing {
+	0% {
+		transform: rotate(-15deg);
+	}
+	100% {
+		transform: rotate(-75deg);
+	}
+}
+
+@keyframes wing-reverse {
+	0% {
+		transform: rotate(15deg);
+	}
+	100% {
+		transform: rotate(75deg);
+	}
+}
+
+@keyframes swing {
+	0% {
+		transform: rotate(8deg);
+	}
+	100% {
+		transform: rotate(-8deg);
+	}
+}
+
+@keyframes glide {
+	0% {
+		transform: translateX(40vw);
+	}
+	100% {
+		transform: translateX(-120vw);
+	}
 }
