@@ -1,7 +1,5 @@
 # [scss](https://sass-lang.com/documentation)-template
 
-### Step - 1
-
 - Open your terminal and type 
     
       git clone https://github.com/mdmarufsarker/scss-template.git
