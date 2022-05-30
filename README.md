@@ -2,7 +2,7 @@
 
 - Open your terminal and type 
     
-      git clone https://github.com/mdmarufsarker/scss-template.git
+      git clone https://github.com/mdmarufsarker/scss-basic-template.git
   
 - Go inside this directory
     
