@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:scss": "node-sass ./scss/style.scss -o ./ -w"
+    "start": "node-sass ./scss/style.scss -o ./ -w"
   },
   "keywords": [],
-  "author": "",
+  "author": "Md. Maruf Sarker",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^7.0.1"
